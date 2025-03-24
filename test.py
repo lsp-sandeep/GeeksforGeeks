@@ -65,3 +65,54 @@ input = '()()))())))))(())())))()))))()((()(((((((()(()()))()(()())))((()(((((((
 maxLength(input)
 
 #%%
+class Node:
+
+    def __init__(self, val):
+        self.right = None
+        self.data = val
+        self.left = None
+
+def helper(self, root, prev, k):
+    
+    k+=1
+
+    if(root == None or k > 10):
+        return True
+
+    print(root.data, prev.data if prev != None else None, end= " ")    
+    if(
+        (root.left != None and root.left.data > root.data)
+        or (prev != None and root.left.data > prev.data)
+        ):
+        print(root.left != None and root.left.data > root.data, end= " ")
+        print(prev != None and root.left.data > prev.data, end= " ")
+        return False
+        
+    leftCheck = self.helper(root.left, root, k)
+
+    if(
+        (root.right != None and root.right.data < root.data)
+        or (prev != None and root.right.data < prev.data)
+        ):
+        print(root.right != None and root.right.data < root.data, end= " ")
+        print(prev != None and root.right.data < prev.data, end= " ")
+        return False
+
+    rightCheck = self.helper(root.right, root, k)
+    
+    return leftCheck and rightCheck
+
+def isBST(self, root):
+
+    return self.helper(root, None, 0)
+
+#%%
+
+root = Node(2)
+root.left = Node(1)
+root.right = Node(3)
+root.right.right = Node(5)
+
+print(isBST(root))
+
+#%%
